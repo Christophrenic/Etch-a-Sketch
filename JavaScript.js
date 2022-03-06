@@ -12,6 +12,22 @@ function createDefaultGrid() {                                 //createDefaultGr
     }
     return;
 }
-
 createDefaultGrid();
 
+let mouseDown = false                                       //Create mouseDown boolean of the mousedown event
+document.body.onmousedown = ()=>(mouseDown = true)
+document.body.onmouseup = ()=>(mouseDown = false)
+
+function changeColor (e) {
+    if (e.type === 'mouseover' && !mouseDown) {      //Boolean used instead of 'mousedown' as it is compatible with bang.
+        return;
+} else {
+    e.target.style.backgroundColor = 'black';
+    }
+}
+const gridSelector = document.querySelectorAll('.gridContainer .gridDiv');
+    gridSelector.forEach(gridDiv => {
+        gridDiv.addEventListener('mouseover', changeColor);
+        gridDiv.addEventListener('mousedown', changeColor);
+
+    })
