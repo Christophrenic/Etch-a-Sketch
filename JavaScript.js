@@ -4,7 +4,7 @@ function createDefaultGrid() {                                 //createDefaultGr
         document.body.appendChild(gridContainer)
 
     let i = 0;                    
-    while (i < 256) {                                          //Create grids and append inside gridContainer
+    while (i < 255) {                                          //Create grids and append inside gridContainer
         const defaultGrid = document.createElement('div');  
         defaultGrid.classList.add('gridDiv');
         gridContainer.appendChild(defaultGrid);
@@ -14,3 +14,4 @@ function createDefaultGrid() {                                 //createDefaultGr
 }
 
 createDefaultGrid();
+
