@@ -6,17 +6,12 @@ body {
     margin: 0;
 }
 .gridContainer {
-    display: flex;
-    flex-flow: column wrap;
+    display: grid;
     height: 960px;
     width: 960px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.gridDiv {
-    height: 60px;
-    width: 60px;
-}
 
 
 .btnContainer {
