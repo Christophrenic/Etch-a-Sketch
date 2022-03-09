@@ -1,21 +1,26 @@
 body {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 .gridContainer {
     display: flex;
     flex-flow: column wrap;
-    height: 640px;
-    width: 640px;   
+    height: 960px;
+    width: 960px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .gridDiv {
-    height: 40px;
-    width: 40px;
-    border: 1px solid gray;
+    height: 60px;
+    width: 60px;
 }
 
-.gridDiv:hover {
-    background-color: black;
+
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
