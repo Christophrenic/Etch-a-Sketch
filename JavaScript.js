@@ -6,7 +6,7 @@ function createDefaultGrid(amount, size) {                                 //Cre
     gridContainer.classList.add('gridContainer');
     gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
-    document.body.appendChild(gridContainer)
+    document.querySelector('.gridUI').appendChild(gridContainer);
 
     let i = 0;                    
     while (i < amount) {                                          //Take variable amount as the number of divs and append them inside gridContainer.
@@ -15,41 +15,67 @@ function createDefaultGrid(amount, size) {                                 //Cre
         gridContainer.appendChild(gridElements);
         i++;
     }
-    const gridSelector = document.querySelectorAll('.gridContainer .gridDiv');    //Make each div listen to mouseover & mouse down and change color.
-    gridSelector.forEach(gridDiv => {
-        gridDiv.addEventListener('mouseover', changeColor);
-        gridDiv.addEventListener('mousedown', changeColor);
-        
-    })
-    return;
 }
 createDefaultGrid(amount, size);
 
-window.addEventListener('contextmenu', function (e) {          //Disable right click menu.
-    e.preventDefault();
-})
+function checkMode(pencil, eraser) {                              //Check if user has selected pencil or eraser and color grid black or white accordingly
+    if (pencil.classList.contains('clicked')) {
+        const gridSelector = document.querySelectorAll('.gridContainer .gridDiv');    //Make each div listen to mouseover & mouse down and change color.
+        gridSelector.forEach(gridDiv => {
+            gridDiv.addEventListener('mouseover', changeColor);
+            gridDiv.addEventListener('mousedown', changeColor);
+        })
+            function changeColor (e) {
+                if (e.type  === 'mouseover' && !mouseDown) {      //Boolean used instead of 'mousedown' as it is compatible with bang.
+                    return;
+                } else if (pencil.classList.contains('clicked')) {
+                e.target.style.backgroundColor = 'black';
+                }
+                return;
+            }
 
-document.addEventListener('mousedown' , eraser, false)
-function eraser(e) {                        //Erase when right clicking.
-    if (e.button == 2) {
-    e.target.style.backgroundColor = 'white';
+    }  else if (eraser.classList.contains('clicked')) {
+        const gridSelector = document.querySelectorAll('.gridContainer .gridDiv');    //Make each div listen to mouseover & mouse down and change color.
+        gridSelector.forEach(gridDiv => {
+            gridDiv.addEventListener('mouseover', erase);
+            gridDiv.addEventListener('mousedown', erase);
+        })
+            function erase(e) {
+                if (e.type === 'mouseover' && !mouseDown) {
+                    return;
+                } else if (eraser.classList.contains('clicked')) {
+                e.target.style.backgroundColor = 'white';
+                }
+                return;
+        }
     }
-} 
-
+}
 
 let mouseDown = false                                       //Create mouseDown boolean of the mousedown event
 document.body.onmousedown = ()=>(mouseDown = true)
 document.body.onmouseup = ()=>(mouseDown = false)
 
-function changeColor (e) {
-    if (e.type === 'mouseover' && !mouseDown) {      //Boolean used instead of 'mousedown' as it is compatible with bang.
-        return;
-    } else {
-    e.target.style.backgroundColor = 'black';
-    }
+
+
+
+
+const eraser = document.getElementById('eraser');          //When user clicks eraser icon, add 'clicked' class & remove 'clicked" class from pencil
+eraser.addEventListener('click', addEraserClass, false)
+function addEraserClass() {
+    eraser.classList.add('clicked');
+    pencil.classList.remove('clicked');
+    checkMode(pencil, eraser);
 }
 
-let userChangeSize = document.querySelector('.btnContainer .gridSize')
+const pencil = document.getElementById('pencil');         // ^ vice versa
+pencil.addEventListener('click', addPencilClass, false)
+function addPencilClass() {
+    pencil.classList.add('clicked');
+    eraser.classList.remove('clicked');
+    checkMode(pencil, eraser);
+}
+
+let userChangeSize = document.querySelector('.btnContainer .gridSize')      //Listen for Change Size button click and prompt user to enter value.
 userChangeSize.addEventListener('click', gridSizeUserInput, false)
 
 function gridSizeUserInput() {
@@ -57,6 +83,7 @@ function gridSizeUserInput() {
     amount = (size * size);
     deleteOldGrid();
     createDefaultGrid(amount, size);
+    checkMode(pencil,eraser);
 }
 
 function deleteOldGrid() {

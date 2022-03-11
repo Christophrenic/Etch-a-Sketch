@@ -1,6 +1,6 @@
 body {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
     margin: 0;
@@ -9,13 +9,65 @@ body {
     display: grid;
     height: 960px;
     width: 960px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin-top: 35px;
+    box-shadow: 0 3px 100px rgb(0 0 0 / 0.2);
 }
 
-
+.gridUI {
+    display: flex;
+    flex-direction: column-reverse
+}
 
 .btnContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    margin-top: 30px;
+}
+
+.btnContainer .gridSize {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.btnContainer .gridSize:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    
+}
+
+.UIcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-right: 35px;
+
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+    border: solid 1px #04AA6D;
+    border-radius: 20px;
+    box-shadow: 7px 6px 28px 1px #04AA6D;
+}
+
+img.clicked {
+    box-shadow: 7px 6px 28px 1px #04AA6D;
+    border-radius: 20px;
 }
