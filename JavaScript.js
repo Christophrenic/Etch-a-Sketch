@@ -7,12 +7,26 @@ function createDefaultGrid(amount, size) {                                 //Cre
     gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     document.querySelector('.gridUI').appendChild(gridContainer);
+    gridContainer.draggable = false;
 
     let i = 0;                    
     while (i < amount) {                                          //Take variable amount as the number of divs and append them inside gridContainer.
         const gridElements = document.createElement('div');
         gridElements.classList.add('gridDiv');
         gridContainer.appendChild(gridElements);
+
+        gridContainer.addEventListener('dragstart', (e) => {     //Prevent drag & drop when using grid.
+            e.preventDefault()
+        })
+        gridContainer.addEventListener('drop', (e) => {
+            e.preventDefault()
+        })
+        gridElements.addEventListener('dragstart', (e) => {
+            e.preventDefault()
+        })
+        gridElements.addEventListener('drop', (e) => {
+            e.preventDefault()
+        })
         i++;
     }
 }
