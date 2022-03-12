@@ -43,7 +43,8 @@ function checkMode(pencil, eraser) {                              //Check if use
                 if (e.type  === 'mouseover' && !mouseDown) {      //Boolean used instead of 'mousedown' as it is compatible with bang.
                     return;
                 } else if (pencil.classList.contains('clicked')) {
-                e.target.style.backgroundColor = 'black';
+                const color = document.getElementById('colorChoice').value;
+                e.target.style.backgroundColor = `${color}`;
                 }
                 return;
             }

@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     flex-direction: row-reverse;
@@ -46,6 +47,8 @@ body {
     
 }
 
+/** USER INTERFACE **/
+
 .UIcontainer {
     display: flex;
     flex-direction: column;
@@ -70,4 +73,28 @@ img:hover {
 img.clicked {
     box-shadow: 7px 6px 28px 1px #04AA6D;
     border-radius: 20px;
+}
+
+#colorChoice {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+}
+
+#colorChoice::-webkit-color-swatch {
+    border-radius: 50px;
+    border: none;
+    border-color: transparent;
+}
+
+input[type = color]:hover{ 
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+    box-shadow: 7px 6px 28px 1px #04AA6D;
+    border-radius: 20px;
+    border-color: transparent;
 }
