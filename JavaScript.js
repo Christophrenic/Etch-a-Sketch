@@ -1,8 +1,8 @@
 let amount = 100;
 let size = 10;
 
-function createDefaultGrid(amount, size) {                                 //Create 256 grid divs and append them inside gridContainer
-    const gridContainer = document.createElement('div');
+function createDefaultGrid(amount, size) {
+    const gridContainer = document.createElement('div');                 
     gridContainer.classList.add('gridContainer');
     gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -82,7 +82,7 @@ function addEraserClass() {
     checkMode(pencil, eraser);
 }
 
-const pencil = document.getElementById('pencil');         // ^ vice versa
+const pencil = document.getElementById('pencil');
 pencil.addEventListener('click', addPencilClass, false)
 function addPencilClass() {
     pencil.classList.add('clicked');
@@ -94,7 +94,7 @@ let userChangeSize = document.querySelector('.btnContainer .gridSize')      //Li
 userChangeSize.addEventListener('click', gridSizeUserInput, false)
 
 function gridSizeUserInput() {
-    size = prompt('Enter grid size', 'example: an input of 40 generates a 40x40 grid. Maximum is 100')
+    size = prompt('Enter Grid size:', 'To create 3x3 just enter 3')
     amount = (size * size);
     deleteOldGrid();
     createDefaultGrid(amount, size);
